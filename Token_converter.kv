@@ -1,0 +1,807 @@
+Screen_Manager:
+    Main_Screen:
+    Ether_Screen:
+    Btc_Screen:
+    Trx_Screen:
+    About_Screen:
+    Donute_Screen:
+#
+#
+#Main LAyOut
+<Main_Screen>:
+    name: 'Main'
+    #
+    # Frame LayOut
+    BoxLayout:
+        
+        size_hint: None, None
+        size: root.width, root.height
+        orientation: 'vertical'
+
+
+        # 0 1
+        # Introduction LayOut
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/6
+            #pos_hint: {'top': 1, 'center_x':0.5 }           
+            spacing: '10dp'
+            padding: '10dp'
+            #
+            # A canvas
+            canvas.before:  
+                Color:
+                    rgba: .922 , 0 , .161 , .7
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [0 ,  0 , 25  , 25 ]
+            
+            orientation: 'vertical'
+            #
+            # introducing Label
+            Label:  
+                markup: True
+                text:"[color=000000] [b] Welcom [/b] \nTO\nToken Converter[/color]"
+                size: self.texture_size
+                font_size: 20
+                pos_hint: { 'center_x':.5 , 'top': 0 }
+                size_hint: None , None
+                valign: 'center'
+                halign: 'center'
+                
+                
+
+        # 1 1
+        #Main layOut
+        GridLayout:
+            rows: 1
+            cols: 3
+            size_hint: None , None
+            size: root.width , root.height/1.5
+            spacing: '10dp'
+            padding: '10dp'
+
+            # row 1 col 1
+            # Tron Button
+            Button:
+                id: "Tron"
+                markup: True
+                text: "[color=000000]TRX[/color]"
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: .5
+                        rectangle: self.x, self.y, self.width, self.height
+
+                size_hint: (1/3 , 1/3)
+               
+                background_color: (1, 1 , 1 , 0)
+                
+                on_release:
+                    app.root.current = 'trx'
+                    root.manager.transition.direction ='left'
+
+                Image:
+                    source: 'images/TRX.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y + 100
+
+            # row 1 col 2
+            # Bit Coin Button
+            Button:
+                id: 'Bit Coin'
+                markup: True
+                text: "[color=000000]BTC[/color]"
+                background_color: (1, 1 , 1 , 0)
+                size_hint: (1/3 , 1/3)
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                
+                on_release:
+                    app.root.current = 'btc'
+                    root.manager.transition.direction ='left'
+
+                Image:
+                    source: 'images/BTC.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y + 100
+
+            # row 1 col 3
+            #Ether Button
+            Button:
+                id: 'Ether'
+                markup: True
+                text: "[color=000000]ETH[/color]"
+                background_color: (1, 1 , 1 , 0)
+                
+                
+                
+                size_hint: (1/3 , 1/3)
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+                
+
+
+                on_release:
+                    app.root.current = 'ether'
+                    root.manager.transition.direction ='left'
+                Image:
+                    source: 'images/ETH.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y + 100
+        # 1 2
+        # Aboute Donate Butt            
+        BoxLayout:
+            size_hint: None , None
+            size: root.width , root.height/6
+            pos_hint: {'center_x' : .5 , 'bottom' : 1}
+            spacing: '10dp'
+            padding: '10dp'
+
+
+            #
+            # About Button
+            Button:
+                id: "About"
+
+                markup: True
+
+                text: "[color=000000]About[/color]"
+
+               #
+               #Canvas
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+    
+
+                size_hint: (.16 , 1)
+                
+                pos_hint:{"x" : .2 , 'left': 1}
+
+                background_color: (1, 1 , 1 , 0)
+
+                bachground_normal: "\TRX.png"
+
+                on_release:
+                    app.root.current = 'Main'
+                    root.manager.transition.direction ='left'
+            #
+            # Donate Button
+            Button:
+                id: "Donate"
+
+                markup: True
+
+                text: "[color=000000]donate[/color]"
+
+               
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+    
+
+                size_hint: (.16 , 1)
+                
+                pos_hint:{"x" : .2 , 'left': 1}
+
+                background_color: (1, 1 , 1 , 0)
+
+                bachground_normal: "\TRX.png"
+
+                on_release:
+                    app.root.current = 'Main'
+                    root.manager.transition.direction ='left'
+
+#
+#
+# Ether SCreen         
+<Ether_Screen>:
+    wei:wei
+    kwei: kwei
+    mwei: mwei
+    gwei:gwei
+    micro:micro
+    mili:mili
+    eth:eth
+    kether:kether
+    mether: mether
+    gether:gether
+    tether:tether
+    name: 'ether'
+    #
+    # Frame LayOut
+    BoxLayout:
+        size_hint: None, None
+        size: root.width, root.height
+        orientation: 'vertical'
+        #
+        # A place for Token Logo
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/6
+            pos_hint: {'top': 1 }           
+            #
+            # Token Logo
+            Image:
+                source: 'images/ETH.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y 
+        #
+        # Content
+        GridLayout:
+            rows: 12
+            cols: 2
+            size_hint: None , None
+            size: root.width , root.height/1.41
+            #spacing: '10dp'
+            padding: '10dp'
+
+            # ROW 1
+            # wei
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Wei [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:wei
+                hint_text: "wei"
+                text: ''
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+                        #root.wei_to_kwei()
+
+            # ROW 2
+            # K wei
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Kwei / Babbage / Femtoether [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None                               
+            TextInput:
+                id:kwei
+                hint_text: "Kwei"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+                    #root.kwei_to_wei()
+                   # root.kwei_to_mwei()
+
+
+            # ROW 3
+            # M wei
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Mwei / Lovelace / Picoether [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:mwei
+                hint_text: "Mwei"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+                  #  root.mwei_to_gwei()
+                 #   root.mwei_to_kwei()
+
+            # ROW 4
+            # G wei
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Gwei / Shannon / Nanoether / Nano [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None               
+
+            TextInput:
+                id:gwei
+                hint_text: "Gwei"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+
+            # ROW 5
+            # mic ether
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Szabo / Microether/ Micro [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:micro
+                hint_text: "microether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+ 
+            # m ether
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Finney / Milliether / Milli [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:mili
+                hint_text: "milliether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+
+            # ROW 7
+            # Etehr
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Etehr [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:eth
+                hint_text: "ether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text: 
+                    root.convert()
+
+            # ROW 8
+            # K ehter
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Kether / Grand [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:kether
+                hint_text: "kether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text: 
+                    root.convert()
+
+            # ROW 9
+            # M ether
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Mether [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:mether
+                hint_text: "mether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text: 
+                    root.convert()
+
+
+            # ROW 10
+            # G ether
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Gether [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:gether
+                hint_text: "gether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+
+
+            # ROW 11
+            # T ether
+            Label:
+                markup: True
+                text: '[color=00000099] [b] Tether [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:tether
+                hint_text: "tether"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    root.convert()
+
+            # ROW 12
+            # $
+            Label:
+                markup: True
+                text: '[color=00000099] [b] USD [/b] [/color]'
+                font_size: 14
+                text_size: root.width/2, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+                                 
+            TextInput:
+                id:12
+                hint_text: "$"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                on_text:
+                    
+
+        
+        #       
+        # Back Button
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/8        
+            spacing: '10dp'
+            padding: '10dp'
+            #
+            # Back Butt
+            Button: 
+                markup: True
+                text: '[color=000000] back [/color]'
+                background_color: (1, 1 , 1 , 0)
+                #
+                # A canvas
+                canvas.before:  
+                    Color:
+                        rgba: .922 , 0 , .161 , .7
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [25, ]        
+                on_release:
+                    app.root.current = 'Main'
+                    root.manager.transition.direction ='left'
+#
+#
+# Bit Screen
+<Btc_Screen>:
+    satooshi: satooshi
+    btc: btc
+    name: 'btc'
+    #
+    # Frame LayOut
+    BoxLayout:
+        size_hint: None, None
+        size: root.width, root.height
+        orientation: 'vertical'
+        #
+        # A place for Token Logo
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/6
+            pos_hint: {'top': 1 }           
+            #
+            # Token Logo
+            Image:
+                source: 'images/BTC.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y 
+        #
+        # Content
+        GridLayout:
+            rows: 6
+            cols: 1
+            size_hint: None , None
+            size: root.width , root.height/1.41
+            #spacing: '10dp'
+            padding: '10dp'
+
+            # ROW 1
+            # satooshi
+            Label:
+                markup: True
+                text: '[color=00000099] [b] satooshi [/b] [/color]'
+                font_size: 14
+                text_size: root.width, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:satooshi
+                hint_text: "satooshi"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2
+                on_text: root.sat_to_bit()
+            # ROW 2
+            # BTC wei
+            Label:
+                markup: True
+                text: '[color=00000099] [b] BTC [/b] [/color]'
+                font_size: 14
+                text_size: root.width, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None                               
+            TextInput:
+                id:btc
+                hint_text: "BTC"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2
+                on_text: root.bit_to_sat()
+            # ROW 3
+            # USD
+            Label:
+                markup: True
+                text: '[color=00000099] [b] USD [/b] [/color]'
+                font_size: 14
+                text_size: root.width, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+            TextInput:
+                id:3
+                hint_text: "$"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2
+        #       
+        # Back Button
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/8        
+            spacing: '10dp'
+            padding: '10dp'
+            #
+            # Back Butt
+            Button: 
+                markup: True
+                text: '[color=000000] back [/color]'
+                background_color: (1, 1 , 1 , 0)
+                #
+                # A canvas
+                canvas.before:  
+                    Color:
+                        rgba: .922 , 0 , .161 , .7
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [25, ]        
+                on_release:
+                    app.root.current = 'Main'
+                    root.manager.transition.direction ='left'
+#
+#
+# Tron Screen     
+<Trx_Screen>:
+    sun: sun
+    trx: trx
+    name: 'trx'
+        #
+    # Frame LayOut
+    BoxLayout:
+        size_hint: None, None
+        size: root.width, root.height
+        orientation: 'vertical'
+        #
+        # A place for Token Logo
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/6
+            pos_hint: {'top': 1 }           
+            #
+            # Token Logo
+            Image:
+                source: 'images/TRX.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y 
+        #
+        # Content
+        GridLayout:
+            rows: 6
+            cols: 1
+            size_hint: None , None
+            size: root.width , root.height/1.41
+            #spacing: '10dp'
+            padding: '10dp'
+
+            # ROW 1
+            # sun
+            Label:
+                markup: True
+                text: '[color=00000099] [b] sun [/b] [/color]'
+                font_size: 14
+                text_size: root.width, None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None
+
+            TextInput:
+                id: sun
+                hint_text: "sun"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2   
+                on_text: root.sun_to_trx()         
+            # ROW 2
+            # TRX
+            Label:
+                markup: True
+                text: '[color=00000099] [b] TRX [/b] [/color]'
+                font_size: 14
+                text_size: root.width , None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+
+
+            TextInput:
+                id: trx
+                hint_text: "TRX"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2
+                on_text: root.trx_to_sun()
+                             
+
+            # ROW 3
+            # USD
+            Label:
+                markup: True
+                text: '[color=00000099] [b] USD [/b] [/color]'
+                font_size: 14
+                text_size: root.width , None
+                size: self.texture_size
+                halign: 'center'
+                valign: 'middle' 
+                size_hint: None , None  
+
+
+
+            TextInput:
+                id:3
+                hint_text: "$"
+                multiline: False
+                input_filter: 'float'
+                size_hint: root.width/2 , None
+                height: 30
+                background_color: (1, 1 , 1 , 0)
+                padding_x: self.width/2 , self.height/2            
+        #       
+        # Back Button
+        BoxLayout:
+            size_hint: None, None 
+            size: root.width , root.height/8        
+            spacing: '10dp'
+            padding: '10dp'
+            #
+            # Back Butt
+            Button: 
+                markup: True
+                text: '[color=000000] back [/color]'
+                background_color: (1, 1 , 1 , 0)
+                #
+                # A canvas
+                canvas.before:  
+                    Color:
+                        rgba: .922 , 0 , .161 , .7
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [25, ]        
+                on_release:
+                    app.root.current = 'Main'
+                    root.manager.transition.direction ='left'
